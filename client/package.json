@@ -1,5 +1,5 @@
 {
-  "name": "bbr_frontend",
+  "name": "client",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
