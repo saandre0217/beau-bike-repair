@@ -1,10 +1,11 @@
 // Import dependencies
 import express from 'express';
-import 'dotenv/config';
+import dotenv from 'dotenv';
 
 // Create an Express application
 const app = express();
 
+dotenv.config()
 //await connectToDatabase();
 
 // Define routes
