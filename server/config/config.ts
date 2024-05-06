@@ -4,7 +4,7 @@ dotenv.config();
 
 const MYSQL_HOST = process.env.MYSQL_HOST || 'localhost';
 const MYSQL_DATABASE = process.env.MYSQL_DATABASE || 'bbr_database';
-const MYSQL_USER = process.env.MYSQL_USER || 'sandre';
+const MYSQL_USER = process.env.MYSQL_USER || 'root';
 const MYSQL_PASSWORD = process.env.MYSQL_PASSWORD || 'password';
 
 export const MYSQL = {
