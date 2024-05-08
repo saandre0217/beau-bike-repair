@@ -42,7 +42,7 @@ const Query = async (connection: mysql.Connection, query: string) => (
 const sync = async(): Promise<void> => {
     new Promise(async (resolve, reject) => {
 
-        ;(await db).query('CREATE DATABASE IF NOT EXISTS bbrdatabase;', (error, result) => {
+        (await db).query('CREATE DATABASE IF NOT EXISTS bbrdatabase;', (error, result) => {
             if(error) {
                 reject(error);
                 console.error('error creating database', error)
@@ -54,5 +54,20 @@ const sync = async(): Promise<void> => {
         });
     })
 }
+const use = async(): Promise<void> => {
+    new Promise(async (resolve, reject) => {
 
-export { Connect, Query, sync, db }
+        (await db).query('USE bbrdatabase;', (error, result) => {
+            if(error) {
+                reject(error);
+                console.error('error using database', error)
+                return
+            }
+
+            resolve(result)
+            console.log('using db')
+        });
+    })
+}
+
+export { Connect, Query, sync, db, use }

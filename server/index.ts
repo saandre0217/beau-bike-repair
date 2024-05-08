@@ -1,17 +1,26 @@
 // Import dependencies
-import express from 'express';
 import dotenv from 'dotenv';
 import { Connect, sync } from './config/mysql';
+import express, { Request, Response } from 'express'
+import customerRoutes from './routes/customers'
+import path from 'path'
 
-// Create an Express application
-const app = express();
+const clientPath = path.resolve(__dirname, '../client/dist')
+export const app = express();
 
 dotenv.config();
 
-Connect()
- sync();
+app.use(express.json())
+app.use(express.static(clientPath))
 
-// Define routes
+//route definition
+const routeHandler = express.Router()
+app.use('/', routeHandler)
+routeHandler.use('/customer', customerRoutes)
+
+//database connection
+Connect()
+sync();
 
 // Start the server
 app.listen(process.env.PORT, () => {
