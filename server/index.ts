@@ -8,8 +8,8 @@ const app = express();
 
 dotenv.config();
 
-Connect();
-sync();
+Connect()
+ sync();
 
 // Define routes
 
