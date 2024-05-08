@@ -37,4 +37,21 @@ const Query = async (connection: mysql.Connection, query: string) => (
     })
 );
 
-export { Connect, Query }
+const sync = async(): Promise<void> => {
+    new Promise(async (resolve, reject) => {
+        const db = Connect()
+      
+        ;(await db).query('CREATE DATABASE bbrdatabase;', (error, result) => {
+            if(error) {
+                reject(error);
+                console.error('error creating database', error)
+                return
+            }
+
+            resolve(result)
+            console.log('bbrdatabase created')
+        });
+    })
+}
+
+export { Connect, Query, sync }

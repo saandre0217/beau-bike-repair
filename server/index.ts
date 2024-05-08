@@ -1,7 +1,7 @@
 // Import dependencies
 import express from 'express';
 import dotenv from 'dotenv';
-import { Connect } from './config/mysql';
+import { Connect, sync } from './config/mysql';
 
 // Create an Express application
 const app = express();
@@ -9,6 +9,7 @@ const app = express();
 dotenv.config();
 
 Connect();
+sync();
 
 // Define routes
 
