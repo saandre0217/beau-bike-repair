@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx tsx index.ts mysql -u root -p < schema.sql"
-  
+    "start": "npx tsx index.ts"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +15,9 @@
     "@types/node": "^20.12.10",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mysql": "^2.18.1",
+    "mysql2": "^3.9.7",
+    "sequelize": "^6.37.3",
+    "sequelize-cli": "^6.6.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.5"
   },

@@ -1,6 +1,6 @@
 // Import dependencies
 import dotenv from 'dotenv';
-import { Connect, sync } from './config/mysql';
+import { connection } from './config/db';
 import express, { Request, Response } from 'express'
 import customerRoutes from './routes/customers'
 import path from 'path'
@@ -19,8 +19,7 @@ app.use('/', routeHandler)
 routeHandler.use('/customer', customerRoutes)
 
 //database connection
-Connect()
-sync();
+connection();
 
 // Start the server
 app.listen(process.env.PORT, () => {
