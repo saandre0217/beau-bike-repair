@@ -18,10 +18,8 @@ import {
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
     phone: DataTypes.STRING,
-    email: DataTypes.STRING
-  },
-  {timestamps: true}
-  );
+    email: DataTypes.STRING,
+  });
 
   interface Customer extends Model<InferAttributes<Customer>, InferCreationAttributes<Customer>> {
     id: CreationOptional<number>;

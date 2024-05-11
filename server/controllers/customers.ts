@@ -1,31 +1,20 @@
-import { NextFunction, Request, Response, response } from "express";
-import { Connect, Query, use } from "../config/mysql";
+import { Request, Response } from "express";
+import { Customer } from '../models/customer';
 
-const dbPromise = (queryStr: string, errorMsg: string) => {
-    Connect()
-    .then(connection => {
-        Query(connection, queryStr)
-        .then(data => {
-            return response.status(200).send(data)
+export const createCustomer = async(req: Request, res: Response) => {
+    const { firstName, lastName, phone, email } = req.body 
+    try {
+        console.log(firstName, lastName, phone, email)
+        const customer = await Customer.create({
+            firstName: firstName,
+            lastName: lastName,
+            phone: phone,
+            email: email
         })
-        .catch(error => {
-            console.error(errorMsg, error)
-            return response.sendStatus(500)
-        })
-        .finally(() => connection.end())
-    })
-    .catch((error) => {
-        console.error(errorMsg, error)
-        return response.sendStatus(500)
-    })
-}
 
-export const createCustomer = (req: Request, res: Response, next: NextFunction) => {
-    const { firstName, lastName, phoneNumber, emailAddress } = req.body;
-
-    let query = `INSERT INTO customers (firstName, lastName, phoneNumber, emailAddress) VALUES ("${firstName}", "${lastName}", "${phoneNumber}", "${emailAddress}")`
-
-    use();
-    return dbPromise(query, 'could not create customer')
-
-}
+        res.status(200).send(customer)
+    }catch(error){
+        console.error('error creating customer', error)
+        res.sendStatus(500)
+    }
+};
