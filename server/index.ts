@@ -2,8 +2,9 @@
 import dotenv from 'dotenv';
 import { connection, syncDatabase, createDatabase } from './config/db';
 import express, { Request, Response, NextFunction } from 'express'
-import customerRoutes from './routes/customers'
-import adminRoutes from './routes/admin'
+// import customerRoutes from './routes/api/customers'
+// import adminRoutes from './routes/admin'
+import routes from './routes'
 import path from 'path'
 import cors from 'cors'
 import * as passportStrategy from "passport-local";
@@ -24,10 +25,11 @@ const corsOption = {
 app.use(cors(corsOption));
 
 //route definition
-const routeHandler = express.Router()
-app.use('/', routeHandler)
-routeHandler.use('/customer', customerRoutes)
-routeHandler.use('/admin', adminRoutes)
+// const routeHandler = express.Router()
+// app.use('/', routeHandler)
+// routeHandler.use('/customer', customerRoutes)
+// routeHandler.use('/admin', adminRoutes)
+app.use(routes)
 
 //admin authentication
 

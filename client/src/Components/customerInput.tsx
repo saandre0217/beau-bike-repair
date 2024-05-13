@@ -9,7 +9,7 @@ const [email, setEmail] =useState<string>('');
 //console.log(firstName, lastName, phone, email)
 const submitForm = async () => {
     try{
-        await axios.post('http://localhost:3001/customer/create', 
+        await axios.post('http://localhost:3001/api/customer/create', 
         {
             firstName,
             lastName,
