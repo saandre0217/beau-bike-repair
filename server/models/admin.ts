@@ -6,7 +6,7 @@ import {
   } from 'sequelize';
 
   import { db }from '../config/db'
-  interface AdminAttributes {
+  export interface AdminAttributes {
     id: number;
     username: string;
     password: string;
