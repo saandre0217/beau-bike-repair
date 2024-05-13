@@ -5,15 +5,36 @@ import {
     InferCreationAttributes,
     CreationOptional,
     DataTypes,
+    Optional
   } from 'sequelize';
 
   import { db }from '../config/db'
+  interface CustomerAttributes {
+    id: number;
+    firstName: string;
+    lastName: string;
+    phone: string;
+    email: string;
+  }
 
-  export const Customer = db.define('customer', {
+  interface CustomerCreationAttributes 
+    extends Optional<CustomerAttributes, 'id'> {}
+
+  export interface CustomerInstance
+    extends Model<CustomerAttributes, CustomerCreationAttributes>,
+    CustomerAttributes {
+      createdAt?: Date;
+      updatedAt?: Date;
+    }
+
+
+  export const Customer = db.define<CustomerInstance>('customer', {
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         primaryKey: true,
+        unique: true,
+        allowNull: false
       },
     firstName: DataTypes.STRING,
     lastName: DataTypes.STRING,
@@ -21,13 +42,7 @@ import {
     email: DataTypes.STRING,
   });
 
-  interface Customer extends Model<InferAttributes<Customer>, InferCreationAttributes<Customer>> {
-    id: CreationOptional<number>;
-    firstName: string;
-    lastName: string;
-    phone: string;
-    email: string;
-  };
+ 
 
 
 
