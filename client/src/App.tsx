@@ -2,7 +2,9 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { Intake } from './Pages/Intake';
+import { Login } from './Pages/Login';
 import { Admin } from './Pages/Admin';
+import PrivateRoutes from './Components/privateRoutes';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 function App() {
@@ -14,7 +16,10 @@ function App() {
       <Router>
         <Routes>
           <Route path='/' element={<Intake />} />
-          <Route path='/admin' element={<Admin />}/>
+          <Route path='/login' element={<Login />}/>
+          <Route element={<PrivateRoutes />}>
+            <Route path='/admin' element={<Admin />}/>
+          </Route>
         </Routes>
       </Router>
     </div>

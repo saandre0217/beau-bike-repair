@@ -21,11 +21,10 @@ router.post('/', async(req, res) => {
                 JWT_SECRET, 
                 { expiresIn: '15d'}
             )
-            res.json(token)
-            //res.redirect('http:localhost:3000/admin')
+            res.status(200).send(admin)
         } else {
-            res.json('fail')
-            //res.redirect('http:localhost:3000/login')
+            console.log('fail')
+            res.sendStatus(500)
         }
 
 

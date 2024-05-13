@@ -24,21 +24,22 @@ export const createCustomer = async(req: Request, res: Response) => {
 
 export const getCustomers = async(req:Request, res: Response) => {
     try{
-        const bearerToken = req.headers.authorization?.split(' ');
-        const token = bearerToken && bearerToken[0] === 'Bearer' ? bearerToken[1] : null;
+        // const bearerToken = req.headers.authorization?.split(' ');
+        // const token = bearerToken && bearerToken[0] === 'Bearer' ? bearerToken[1] : null;
 
-        if(!bearerToken && !token ){
-           //res.redirect('http:/localhost:3000/login')
-           res.sendStatus(401)
-           return;
-        } 
+        // if(!bearerToken && !token ){
+        //    //res.redirect('http:/localhost:3000/login')
+        //    res.sendStatus(401)
+        //    return;
+        // } 
 
-        const payload = jwt.verify(token, JWT_SECRET )
+        // const payload = jwt.verify(token, JWT_SECRET )
 
-        if(payload){
-            const customers = await Customer.findAll();
+        // if(payload){
+            
+        // }
+        const customers = await Customer.findAll();
             res.status(200).send(customers)
-        }
     } catch(error){
         console.error('could not get all customers:', error);
         res.sendStatus(500)

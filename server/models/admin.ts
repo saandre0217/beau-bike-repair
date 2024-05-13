@@ -7,9 +7,9 @@ import {
 
   import { db }from '../config/db'
   export interface AdminAttributes {
-    id: number;
-    username: string;
-    password: string;
+    id: number | undefined;
+    username: string | undefined;
+    password: string | undefined;
   }
 
   interface AdminCreationAttributes 
