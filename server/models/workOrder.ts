@@ -7,6 +7,7 @@ import {
 
   import { db }from '../config/db'
   import { Customer } from './customer';
+  import { Bike } from './bike'
 
   export interface WorkOrderAttributes {
     id: number;
@@ -27,6 +28,7 @@ import {
     other: string;
     comments: string;
     customerId: number;
+    bikeId: number;
   }
   interface WorkOrderCreationAttributes 
   extends Optional<WorkOrderAttributes, 'id'> {}
@@ -66,8 +68,20 @@ export const WorkOrder = db.define ('workOrder', {
             model: Customer,
             key: 'id'
         }
-    }
+    },
+    bikeId: {
+      type:DataTypes.INTEGER,
+      references: {
+          model: Bike,
+          key: 'id'
+      }
+  }
   },
   {timestamps: true}
   );
   
+Customer.hasMany(WorkOrder);
+WorkOrder.belongsTo(Customer)
+
+Bike.hasMany(WorkOrder);
+WorkOrder.belongsTo(Bike)

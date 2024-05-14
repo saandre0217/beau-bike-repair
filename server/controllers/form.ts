@@ -39,7 +39,7 @@ export const createCustomer = async(formData: allQuestionsInstance) => {
 interface createWorkOrderAttributes {
     createWorkOrder: (formData: allQuestionsInstance, customerId: number) => WorkOrderAttributes
 }
-export const createWorkOrder = async(formData: allQuestionsInstance, customerId:number) => {
+export const createWorkOrder = async(formData: allQuestionsInstance, customerId:number, bikeId:number) => {
    const {tuneUp,
     frontBreak,
     rearBreak,
@@ -74,7 +74,8 @@ export const createWorkOrder = async(formData: allQuestionsInstance, customerId:
             tubeless,
             comments, 
             other,
-            customerId
+            customerId,
+            bikeId
         })
 
         return workOrder
@@ -84,7 +85,7 @@ export const createWorkOrder = async(formData: allQuestionsInstance, customerId:
     }
 }
 
-export const createBike = async(formData: allQuestionsInstance, workOrderId:number, customerId:number) => {
+export const createBike = async(formData: allQuestionsInstance, customerId:number) => {
     const {make, model, bikeYear} = formData;
 
     try{
@@ -106,7 +107,6 @@ export const createBike = async(formData: allQuestionsInstance, workOrderId:numb
                 model,
                 bikeYear,
                 customerId,
-                workOrderId
             })
             return newBike
         }
@@ -121,18 +121,20 @@ export const createCustomerOrder = async(req:Request, res: Response) => {
     try{
         const customer:CustomerInstance | undefined = await createCustomer(formData)
         if(customer){
-            const workOrder: any = await createWorkOrder(formData, customer.id)
+            const bike: any = await createBike(formData, customer.id)
 
-            if(workOrder){
-                const bike = await createBike(formData, workOrder.id, customer.id)
-                res.status(400).send(bike)
+
+            if(bike){
+                const workOrder: any = await createWorkOrder(formData, customer.id, bike.id)
+
+                res.status(400).send(workOrder)
             }
         } 
     } catch(error){
         console.error('error creating full order', error)
     }
 }
-export const getCustomers = async(req:Request, res: Response) => {
+export const getNewCustomerOrders = async(req:Request, res: Response) => {
     try{
         // const bearerToken = req.headers.authorization?.split(' ');
         // const token = bearerToken && bearerToken[0] === 'Bearer' ? bearerToken[1] : null;
@@ -148,7 +150,10 @@ export const getCustomers = async(req:Request, res: Response) => {
         // if(payload){
             
         // }
-        const customers = await Customer.findAll();
+        const customers = await WorkOrder.findAll({
+            where:{progress: 'new'}, 
+            include: [Bike, Customer]
+        });
             res.status(200).send(customers)
     } catch(error){
         console.error('could not get all customers:', error);

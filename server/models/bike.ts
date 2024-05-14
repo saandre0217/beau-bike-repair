@@ -41,14 +41,11 @@ export const Bike = db.define('bike', {
             model: Customer,
             key: 'id'
         }
-    },
-    workOrderId: {
-        type:DataTypes.INTEGER,
-        references: {
-            model: WorkOrder,
-            key: 'id'
-        }
     }
 },
 {timestamps: true}
 );
+
+
+Customer.hasMany(Bike)
+Bike.belongsTo(Customer)
