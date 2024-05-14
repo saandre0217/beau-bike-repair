@@ -1,8 +1,11 @@
 import React, { useReducer } from 'react';
 //import { CustomerInput } from '../Components/customerInput';
-import { CheckBoxForm } from '../Components/Checkbox/checkboxForm';
-import { TextForm } from '../Components/Text/textForm'
-import { allQuestions } from '../Components/questionData';
+import { CheckBoxForm } from '../Components/Form/Checkbox/checkboxForm';
+import { TextForm } from '../Components/Form/Text/textForm'
+import { allQuestions } from '../Components/Form/formQuestionData';
+import { TextInput } from '../Components/Form/Text/textInput';
+import { LargeTextInput } from '../Components/Form/Text/largeTextInput';
+import axios from 'axios';
 export const Intake = () => {
 const reducer = (state:any, action:any) => {
     switch(action.type) {
@@ -23,7 +26,7 @@ const reducer = (state:any, action:any) => {
 
 const [state, dispatch] = useReducer(reducer, allQuestions)
 
-const handleAddedText = (e:React.ChangeEvent<HTMLInputElement>, key:string) => {
+const handleAddedText = (e:React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>, key:string) => {
     dispatch({
         type:'add_text',
         key: key,
@@ -37,6 +40,15 @@ const handleCheckBoxChange = (key:string) => {
         key: key
     })
 }
+
+const handleSubmit = async() => {
+try{
+    await axios.post('http://localhost:3001/api/customer/create', { state })
+
+}catch(error){
+    console.error('could not submit form', error)
+}
+}
 console.log(state)
 
     return (
@@ -48,6 +60,25 @@ console.log(state)
             <CheckBoxForm
             handleCheckBoxChange={handleCheckBoxChange}
             />
+            <TextInput 
+                label='other'
+                handleAddedText={handleAddedText}
+                dbName='other'
+                state={state}
+                key={1}
+            />
+            <LargeTextInput 
+                label='Additional Comments'
+                handleAddedText={handleAddedText}
+                dbName='comments'
+                state={state}
+                key={1}
+            />
+            <button
+                onClick={() => handleSubmit}
+            >
+                submit
+            </button>
         </div>
     )
 }

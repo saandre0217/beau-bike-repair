@@ -1,7 +1,7 @@
 import React, { useState, useReducer } from 'react';
 import axios from 'axios';
 import { CheckBoxInput } from './checkboxInput';
-import { checkBoxLabels as cbLabelObjArr }  from '../questionData';
+import { checkBoxLabels as cbLabelObjArr }  from '../formQuestionData';
 
 interface checkBoxProps {
     handleCheckBoxChange:(key: string) => void

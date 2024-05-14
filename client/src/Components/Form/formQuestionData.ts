@@ -5,11 +5,11 @@ export const checkBoxLabels = [
     },
     {
         dbName: 'frontBreak',
-        label: 'Front Break Adjustment'
+        label: 'Front Brake Adjustment'
     }, 
     {
         dbName: 'rearBreak',
-        label: 'Rear Break Adjustment'
+        label: 'Rear Brake Adjustment'
     },
     {
         dbName: 'frontShift',
@@ -37,7 +37,7 @@ export const checkBoxLabels = [
     },
     {
         dbName: 'wheelBarring',
-        label: 'Wheel Barring Service'
+        label: 'Wheel Bearing Service'
     } ,
     {
         dbName: 'flat',
@@ -81,7 +81,8 @@ export const textLabels = [
     {
         dbName: 'bikeYear',
         label:'Bike Year'
-    } 
+    }, 
+    
 ]
 export const allQuestions = {
     firstName: '',
@@ -104,6 +105,8 @@ export const allQuestions = {
     flat: false,
     replaceTire: false,
     tubeless: false,
+    other: '',
+    comments: '',
 }
 
 export type allQuestionsInstance = {
@@ -127,5 +130,7 @@ export type allQuestionsInstance = {
     flat: boolean,
     replaceTire: boolean,
     tubeless: boolean,
+    other: string,
+    comments: string
 }
 

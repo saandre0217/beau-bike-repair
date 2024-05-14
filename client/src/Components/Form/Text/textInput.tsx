@@ -1,12 +1,12 @@
 import React, { SetStateAction, useState } from 'react';
 import axios from 'axios';
-import { allQuestionsInstance } from '../questionData';
+import { allQuestionsInstance } from '../formQuestionData';
 
 //trying to make customer input component more reuseable
 export type TextInputObjModel = {
     key: number,
     label: string,
-    handleAddedText: (e:React.ChangeEvent<HTMLInputElement>, key: string) => void,
+    handleAddedText: (e:React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>, key: string) => void,
     dbName: string,
     state: allQuestionsInstance
 }

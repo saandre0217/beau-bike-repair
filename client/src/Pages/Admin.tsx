@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { CustomerInstance } from '../../../server/models/customer';
-import { CustomerView } from '../Components/customerView';
+import { CustomerView } from '../Components/Admin/customerView';
 
 export const Admin = () => {
     const [customers, setCustomers] = useState<CustomerInstance[]>();

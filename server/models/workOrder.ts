@@ -1,14 +1,42 @@
 import {
     Sequelize,
     Model,
-    InferAttributes,
-    InferCreationAttributes,
-    CreationOptional,
     DataTypes,
+    Optional
   } from 'sequelize';
 
   import { db }from '../config/db'
   import { Customer } from './customer';
+
+  interface WorkOrderAttributes {
+    id: number;
+    progress: string;
+    tuneUp: boolean;
+    frontBreak: boolean;
+    rearBreak: boolean;
+    frontShift: boolean;
+    rearShift: boolean;
+    chain: boolean;
+    bartape: boolean;
+    headset: boolean;
+    bottomBracket: boolean;
+    wheelBarring: boolean;
+    flat: boolean;
+    replaceTire: boolean;
+    tubeless: boolean;
+    other: string;
+    comments: string;
+    customerId: number;
+  }
+  interface WorkOrderCreationAttributes 
+  extends Optional<WorkOrderAttributes, 'id'> {}
+
+  export interface WorkOrderInstance
+  extends Model<WorkOrderAttributes, WorkOrderCreationAttributes>,
+  WorkOrderAttributes {
+    createdAt?: Date;
+    updatedAt?: Date;
+  }
 
 export const WorkOrder = db.define ('workOrder', {
     id: {
@@ -30,6 +58,8 @@ export const WorkOrder = db.define ('workOrder', {
     flat: DataTypes.BOOLEAN,
     replaceTire: DataTypes.BOOLEAN,
     tubeless: DataTypes.BOOLEAN,
+    other: DataTypes.STRING,
+    comments: DataTypes.STRING,
     customerId: {
         type:DataTypes.INTEGER,
         references: {
@@ -41,21 +71,3 @@ export const WorkOrder = db.define ('workOrder', {
   {timestamps: true}
   );
   
-  interface WorkOrder extends Model<InferAttributes<WorkOrder>, InferCreationAttributes<WorkOrder>>{
-    id: CreationOptional<number>;
-    progress: string;
-    tuneUp: boolean;
-    frontBreak: boolean;
-    rearBreak: boolean;
-    frontShift: boolean;
-    rearShift: boolean;
-    chain: boolean;
-    bartape: boolean;
-    headset: boolean;
-    bottomBracket: boolean;
-    wheelBarring: boolean;
-    flat: boolean;
-    replaceTire: boolean;
-    tubeless: boolean;
-    customerId: number;
-  };

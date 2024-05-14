@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { CustomerInstance } from '../../../server/models/customer'
+import { CustomerInstance } from '../../../../server/models/customer'
 
 interface CustomerProps {
     customerData: CustomerInstance

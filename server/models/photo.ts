@@ -1,14 +1,27 @@
 import {
-    Sequelize,
     Model,
-    InferAttributes,
-    InferCreationAttributes,
-    CreationOptional,
     DataTypes,
+    Optional
   } from 'sequelize';
 
   import { db }from '../config/db'
   import { WorkOrder } from './workOrder';
+
+  interface PhotoWorkOrderAttributes {
+    id: number;
+    path: string;
+    workOrderid: number;
+  }
+
+  interface PhotoWorkOrderCreationAttributes 
+    extends Optional<PhotoWorkOrderAttributes, 'id'> {}
+
+  export interface PhotoWorkOrderInstance
+    extends Model<PhotoWorkOrderAttributes, PhotoWorkOrderCreationAttributes>,
+    PhotoWorkOrderAttributes {
+      createdAt?: Date;
+      updatedAt?: Date;
+    }
 
   export const PhotoWorkOrder = db.define('photoWorkOrder', {
     id: {
@@ -27,8 +40,3 @@ import {
 },
 {timestamps: true}
 );
-interface PhotoWorkOrder extends Model<InferAttributes<PhotoWorkOrder>, InferCreationAttributes<PhotoWorkOrder>>{
-    id: CreationOptional<number>;
-    path: string;
-    workOrderid: number;
-}

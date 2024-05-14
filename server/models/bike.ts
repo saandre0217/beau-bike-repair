@@ -1,15 +1,30 @@
 import {
-    Sequelize,
     Model,
-    InferAttributes,
-    InferCreationAttributes,
-    CreationOptional,
+    Optional,
     DataTypes,
   } from 'sequelize';
 
   import { db }from '../config/db'
   import { Customer } from './customer';
   import { WorkOrder } from './workOrder';
+  interface BikeAttributes {
+    id: number;
+    make: string;
+    model: string;
+    bikeYear: string;
+    customerId: number;
+    workOrderId: number;
+  }
+
+  interface BikeCreationAttributes 
+    extends Optional<BikeAttributes, 'id'> {}
+
+  export interface BikeInstance
+    extends Model<BikeAttributes, BikeCreationAttributes>,
+    BikeAttributes {
+      createdAt?: Date;
+      updatedAt?: Date;
+    }
 
 export const Bike = db.define('bike', {
     id: {
@@ -37,11 +52,3 @@ export const Bike = db.define('bike', {
 },
 {timestamps: true}
 );
-interface Bike extends Model<InferAttributes<Bike>, InferCreationAttributes<Bike>>{
-    id: CreationOptional<number>;
-    make: string;
-    model: string;
-    bikeYear: string;
-    customerId: number;
-    workOrderId: number;
-}
