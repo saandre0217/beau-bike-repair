@@ -105,3 +105,27 @@ export const allQuestions = {
     replaceTire: false,
     tubeless: false,
 }
+
+export type allQuestionsInstance = {
+    firstName: string,
+    lastName: string,
+    phone: string,
+    email: string,
+    make: string,
+    model: string,
+    bikeYear: string,
+    tuneUp: boolean,
+    frontBreak: boolean,
+    rearBreak: boolean,
+    frontShift: boolean,
+    rearShift: boolean,
+    chain: boolean,
+    bartape: boolean,
+    headset: boolean,
+    bottomBracket: boolean,
+    wheelBarring: boolean,
+    flat: boolean,
+    replaceTire: boolean,
+    tubeless: boolean,
+}
+

@@ -1,23 +1,25 @@
 import React, { SetStateAction, useState } from 'react';
 import axios from 'axios';
+import { allQuestionsInstance } from '../questionData';
 
 //trying to make customer input component more reuseable
 export type TextInputObjModel = {
     key: number,
     label: string,
-    handleAddedText: any,
+    handleAddedText: (e:React.ChangeEvent<HTMLInputElement>, key: string) => void,
     dbName: string,
-    state: any
+    state: allQuestionsInstance
 }
-export const TextInput = (textProps: TextInputObjModel) => {
+export const TextInput = ({ label, handleAddedText, dbName, state}: TextInputObjModel) => {
     return (
         <div >
-            <div>{textProps.label}</div>
+            <div>{label}</div>
             <input 
-                id={textProps.dbName}
+                id={dbName}
                 type='text'
-                value={textProps.state[textProps.dbName]}
-                onChange={(e) => textProps.handleAddedText.handleAddedText(e, textProps.dbName)}
+                //@ts-ignore
+                value={state[dbName]}
+                onChange={(e) => handleAddedText(e, dbName)}
                 />
            
         </div>

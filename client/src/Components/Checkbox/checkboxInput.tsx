@@ -4,21 +4,21 @@ import axios from 'axios';
 export type CheckBoxInputObjModel = {
     key: number,
     label: string,
+    dbName: string,
+    handleCheckBoxChange: (key:string) => void
 }
 
 export interface CheckBoxInputProps {
     checkBoxObj: CheckBoxInputObjModel;
 }
-export const CheckBoxInput = (checkboxProps: CheckBoxInputObjModel) => {
+export const CheckBoxInput = ({ key, label, dbName, handleCheckBoxChange = (key: string) => {} }: CheckBoxInputObjModel) => {
 
-const [value, setValue] = useState<boolean>(false)
-console.log(checkboxProps.label, value, setValue)
 return (
         <div >
-            <div>{checkboxProps.label}</div>
+            <div>{label}</div>
             <input
                 type='checkbox'
-                onChange={() =>setValue(() => !value)}
+                onChange={() => handleCheckBoxChange(dbName)}
             />
         
         </div>

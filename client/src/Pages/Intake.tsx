@@ -23,7 +23,7 @@ const reducer = (state:any, action:any) => {
 
 const [state, dispatch] = useReducer(reducer, allQuestions)
 
-const handleAddedText = (e:any, key:string) => {
+const handleAddedText = (e:React.ChangeEvent<HTMLInputElement>, key:string) => {
     dispatch({
         type:'add_text',
         key: key,
@@ -45,7 +45,9 @@ console.log(state)
             state={state}
             handleAddedText={handleAddedText}
             />
-            {/* <CheckBoxForm /> */}
+            <CheckBoxForm
+            handleCheckBoxChange={handleCheckBoxChange}
+            />
         </div>
     )
 }
