@@ -88,14 +88,28 @@ export const createBike = async(formData: allQuestionsInstance, workOrderId:numb
     const {make, model, bikeYear} = formData;
 
     try{
-        const bike = await Bike.create({
-            make,
-            model,
-            bikeYear,
-            customerId,
-            workOrderId
+        const currentBike = await Bike.findOne({
+            where:{
+                make,
+                model,
+                bikeYear,
+                customerId
+            }
         })
-        return bike
+
+        if(currentBike){
+            return currentBike
+        } else {
+
+            const newBike = await Bike.create({
+                make,
+                model,
+                bikeYear,
+                customerId,
+                workOrderId
+            })
+            return newBike
+        }
     }catch(error){
         console.error('could not create bike', error)
     }
