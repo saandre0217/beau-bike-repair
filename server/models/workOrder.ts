@@ -8,7 +8,7 @@ import {
   import { db }from '../config/db'
   import { Customer } from './customer';
 
-  interface WorkOrderAttributes {
+  export interface WorkOrderAttributes {
     id: number;
     progress: string;
     tuneUp: boolean;
