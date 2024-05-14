@@ -51,7 +51,7 @@ export const Login = () => {
             <div>password:</div>
             <input 
                 id='password'
-                type='text'
+                type='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 />
