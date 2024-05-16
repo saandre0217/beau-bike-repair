@@ -8,10 +8,10 @@ import { Bike } from '../models/bike';
 import { PhotoWorkOrder } from '../models/photo';
 import { allQuestionsInstance } from '../../client/src/Components/Form/formQuestionData'
 
-export const createCustomer = async(formData: allQuestionsInstance) => {
-    const { firstName, lastName, email, phone} = formData
+export const createCustomer = async(formData: any) => {
+    const { firstName, lastName, email, phone} = formData.state
     try {
-        // console.log(firstName, lastName, phone, email)
+        console.log(firstName, phone)
         const currentCustomer = await Customer.findOne({
             where: {
                 phone
@@ -39,7 +39,7 @@ export const createCustomer = async(formData: allQuestionsInstance) => {
 interface createWorkOrderAttributes {
     createWorkOrder: (formData: allQuestionsInstance, customerId: number) => WorkOrderAttributes
 }
-export const createWorkOrder = async(formData: allQuestionsInstance, customerId:number, bikeId:number) => {
+export const createWorkOrder = async(formData: any, customerId:number, bikeId:number) => {
    const {tuneUp,
     frontBreak,
     rearBreak,
@@ -54,7 +54,7 @@ export const createWorkOrder = async(formData: allQuestionsInstance, customerId:
     replaceTire,
     tubeless,
     comments,
-    other } = formData
+    other } = formData.state
     try {
 
         const workOrder = await WorkOrder.create({
@@ -85,8 +85,8 @@ export const createWorkOrder = async(formData: allQuestionsInstance, customerId:
     }
 }
 
-export const createBike = async(formData: allQuestionsInstance, customerId:number) => {
-    const {make, model, bikeYear} = formData;
+export const createBike = async(formData: any, customerId:number) => {
+    const {make, model, bikeYear} = formData.state;
 
     try{
         const currentBike = await Bike.findOne({
@@ -127,31 +127,18 @@ export const createCustomerOrder = async(req:Request, res: Response) => {
             if(bike){
                 const workOrder: any = await createWorkOrder(formData, customer.id, bike.id)
 
-                res.status(400).send(workOrder)
+                res.status(201).send(workOrder)
             }
         } 
     } catch(error){
         console.error('error creating full order', error)
     }
 }
-export const getNewCustomerOrders = async(req:Request, res: Response) => {
+export const getCustomerOrders = async(req:Request, res: Response) => {
+    const {status} = req.params
     try{
-        // const bearerToken = req.headers.authorization?.split(' ');
-        // const token = bearerToken && bearerToken[0] === 'Bearer' ? bearerToken[1] : null;
-
-        // if(!bearerToken && !token ){
-        //    //res.redirect('http:/localhost:3000/login')
-        //    res.sendStatus(401)
-        //    return;
-        // } 
-
-        // const payload = jwt.verify(token, JWT_SECRET )
-
-        // if(payload){
-            
-        // }
         const customers = await WorkOrder.findAll({
-            where:{progress: 'new'}, 
+            where:{progress: status}, 
             include: [Bike, Customer]
         });
             res.status(200).send(customers)

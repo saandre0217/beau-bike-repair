@@ -43,13 +43,15 @@ const handleCheckBoxChange = (key:string) => {
 
 const handleSubmit = async() => {
 try{
-    await axios.post('http://localhost:3001/api/customer/create', { state })
-
+    console.log(state, 'submitted')
+    const customer = await axios.post('http://localhost:3001/api/customer/create', { state })
+    console.log('success', customer)
 }catch(error){
+   
     console.error('could not submit form', error)
 }
 }
-console.log(state)
+
 
     return (
         <div>
@@ -65,7 +67,7 @@ console.log(state)
                 handleAddedText={handleAddedText}
                 dbName='other'
                 state={state}
-                key={1}
+                key={2}
             />
             <LargeTextInput 
                 label='Additional Comments'
@@ -75,7 +77,7 @@ console.log(state)
                 key={1}
             />
             <button
-                onClick={() => handleSubmit}
+                onClick={() => handleSubmit()}
             >
                 submit
             </button>

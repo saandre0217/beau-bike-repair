@@ -1,9 +1,9 @@
 import express from 'express';
-import { createCustomer, getNewCustomerOrders, createCustomerOrder } from '../../controllers/form';
+import { createCustomer, getCustomerOrders, createCustomerOrder } from '../../controllers/form';
 
 const router = express.Router();
 
 router.post('/create', createCustomerOrder)
-router.get('/all', getNewCustomerOrders)
+router.get('/:status', getCustomerOrders)
 
 export default router;
