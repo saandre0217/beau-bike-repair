@@ -1,5 +1,4 @@
-import { Request, Response } from "express";
-import { Admin } from '../models/admin';
+import { Admin } from './models/admin';
 import bcrypt from 'bcrypt';
 
 export const createAdmin = async(username:string, password:string) =>{
@@ -30,28 +29,4 @@ try{
     console.error('could not create admin', error)
 }
 }
-
-export const authenticateAdmin = async(req:Request, res:Response, cb:any) => {
-    const { username, password } = req.params;
-
-    try{
-       const admin = await Admin.findOne({
-            where: {username}
-        })
-        console.log(admin)
-        res.send(admin)
-        if (!admin){
-            return cb(null, false, {message: 'incorrect username or password'})
-        } else {
-          const match = await bcrypt.compare(password, admin.dataValues.password ) 
-
-          if(match){
-            console.log('matched')
-          }
-        }
-    }catch(error){
-        console.error('could not get admin', error)
-    }
-    
-    
-}
+createAdmin('beau', '123')

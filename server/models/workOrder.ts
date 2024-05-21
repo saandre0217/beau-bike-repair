@@ -6,8 +6,8 @@ import {
   } from 'sequelize';
 
   import { db }from '../config/db'
-  import { Customer } from './customer';
-  import { Bike } from './bike'
+  import { Customer, CustomerInstance } from './customer';
+  import { Bike, BikeInstance } from './bike'
 
   export interface WorkOrderAttributes {
     id: number;
@@ -29,6 +29,7 @@ import {
     comments: string;
     customerId: number;
     bikeId: number;
+
   }
   interface WorkOrderCreationAttributes 
   extends Optional<WorkOrderAttributes, 'id'> {}
@@ -39,6 +40,37 @@ import {
     createdAt?: Date;
     updatedAt?: Date;
   }
+
+  export type CustomerResponse = {
+    id: number;
+    progress: string;
+    tuneUp: boolean;
+    frontBreak: boolean;
+    rearBreak: boolean;
+    frontShift: boolean;
+    rearShift: boolean;
+    chain: boolean;
+    bartape: boolean;
+    headset: boolean;
+    bottomBracket: boolean;
+    wheelBarring: boolean;
+    flat: boolean;
+    replaceTire: boolean;
+    tubeless: boolean;
+    other: string;
+    comments: string;
+    customerId: number;
+    bikeId: number;
+    createdAt: Date;
+    updatedAt: Date;
+    bike: BikeInstance;
+    customer: CustomerInstance
+  }
+
+  export interface ResponseProps {
+    response: CustomerResponse
+  }
+
 
 export const WorkOrder = db.define ('workOrder', {
     id: {

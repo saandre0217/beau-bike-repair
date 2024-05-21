@@ -137,13 +137,34 @@ export const createCustomerOrder = async(req:Request, res: Response) => {
 export const getCustomerOrders = async(req:Request, res: Response) => {
     const {status} = req.params
     try{
-        const customers = await WorkOrder.findAll({
+        const customerOrders = await WorkOrder.findAll({
             where:{progress: status}, 
             include: [Bike, Customer]
         });
-            res.status(200).send(customers)
+            res.status(200).send(customerOrders)
     } catch(error){
         console.error('could not get all customers:', error);
         res.sendStatus(500)
     }
 };
+// const parseCustomerOrderData = (objArray:any) => {
+
+//     return objArray.map((obj:any, i:number) => {
+//         const workOrderObj = {};
+//         const newObj = {
+//             workOrder: {},
+//             customer: {},
+//             bike: {}
+//         }
+//         for(let key in obj){
+//             if(key !== 'customer' && key !== 'bike'){
+//                 //@ts-ignore
+//                 workOrderObj[key] = obj[key]
+//             } 
+//         }
+//         newObj.workOrder = workOrderObj
+//         newObj.customer = obj.customer
+//         newObj.bike = obj.bike
+//        return newObj
+//     })
+// }

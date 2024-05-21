@@ -26,6 +26,7 @@ import {
       updatedAt?: Date;
     }
 
+   
 export const Bike = db.define('bike', {
     id: {
         type: DataTypes.INTEGER,
