@@ -24,6 +24,7 @@ export const Login = () => {
             })
 
             if(checkLogin.status === 200){
+                console.log('found', checkLogin)
                 setUserContext(checkLogin.data.user)
                 localStorage.setItem('isAuthenticated', JSON.stringify(true))
                 navigate('/admin')
@@ -33,6 +34,7 @@ export const Login = () => {
         }catch(error){
             localStorage.setItem('isAuthenticated', JSON.stringify(false))
             alert('invalid credentials')
+            console.error('could not log in', error)
         }
 
     }

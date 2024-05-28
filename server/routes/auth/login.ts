@@ -12,20 +12,18 @@ router.post('/', async(req, res) => {
             where:{username}
         })
         if(admin && await compareHash(password, admin.password)) {
-            const token = jwt.sign(
-                {
-                    userid: admin.id, 
-                    username: admin.username, 
-                    role:'mechanic'
-                },
-                JWT_SECRET, 
-                { expiresIn: '15d'}
-            )
+            // const token = jwt.sign(
+            //     {
+            //         userid: admin.id, 
+            //         username: admin.username, 
+            //         role:'mechanic'
+            //     },
+            //     JWT_SECRET, 
+            //     { expiresIn: '15d'}
+            // )
+            console.log('admin found', admin)
             res.status(200).send(admin)
-        } else {
-            console.log('fail')
-            res.sendStatus(500)
-        }
+        } 
 
 
     } catch(error){

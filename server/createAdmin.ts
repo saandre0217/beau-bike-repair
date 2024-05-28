@@ -29,4 +29,3 @@ try{
     console.error('could not create admin', error)
 }
 }
-createAdmin('beau', '123')

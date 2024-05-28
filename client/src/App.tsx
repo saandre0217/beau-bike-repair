@@ -1,7 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Intake } from './Pages/Intake';
+import { Intake } from './Pages/Form';
 import { Login } from './Pages/Login';
 import { Admin } from './Pages/Admin';
 import PrivateRoutes from './Components/privateRoutes';

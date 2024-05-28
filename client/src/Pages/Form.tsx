@@ -1,12 +1,11 @@
 import React, { useReducer } from 'react';
 //import { CustomerInput } from '../Components/customerInput';
-import { CheckBoxForm } from '../Components/Form/Checkbox/checkboxForm';
-import { TextForm } from '../Components/Form/Text/textForm'
+import { CheckBoxForm } from '../Components/Form/Checkbox/checkboxInputList';
+import { TextForm } from '../Components/Form/Text/textInputList'
 import { allQuestions } from '../Components/Form/formQuestionData';
 import { TextInput } from '../Components/Form/Text/textInput';
 import { LargeTextInput } from '../Components/Form/Text/largeTextInput';
 import axios from 'axios';
-export const Intake = () => {
 const reducer = (state:any, action:any) => {
     switch(action.type) {
         case 'add_text': {
@@ -23,7 +22,7 @@ const reducer = (state:any, action:any) => {
         }
     }
 }
-
+export const Intake = () => {
 const [state, dispatch] = useReducer(reducer, allQuestions)
 
 const handleAddedText = (e:React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLTextAreaElement>, key:string) => {
@@ -42,14 +41,14 @@ const handleCheckBoxChange = (key:string) => {
 }
 
 const handleSubmit = async() => {
-try{
-    console.log(state, 'submitted')
-    const customer = await axios.post('http://localhost:3001/api/customer/create', { state })
-    console.log('success', customer)
-}catch(error){
-   
-    console.error('could not submit form', error)
-}
+    try{
+        console.log(state, 'submitted')
+        const customer = await axios.post('http://localhost:3001/api/customer/create', { state })
+        console.log('success', customer)
+    }catch(error){
+    
+        console.error('could not submit form', error)
+    }
 }
 
 
