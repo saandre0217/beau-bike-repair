@@ -30,8 +30,8 @@ connection();
 syncDatabase()
 
 // Start the server
-const port = process.env.port || 8080;
+//const port = process.env.port;
 
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
+app.listen(8080, () => {
+  console.log(`Server is running on http://localhost:8080`);
 });
