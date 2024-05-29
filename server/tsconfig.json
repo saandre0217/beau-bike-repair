@@ -2,10 +2,10 @@
 {
     "compilerOptions": {
       // Set the ECMAScript version to ES2020
-      "target": "ES2020",
+      "target": "ES6",
   
       // Use a custom module system called NodeNext
-      "module": "es2022",
+      "module": "ESNext",
   
       // Use the nodenext module resolution strategy
       "moduleResolution": "node",
@@ -27,10 +27,9 @@
     },
   
     // Specify the files that should be included and excluded in the compilation process
-    //    "include": ["src/**/*.ts"],
+    "include": ["./*.ts"],
     "exclude": ["node_modules", "dist"],
     "ts-node": {
         "esm": true,
-        "compiler": "typescript"
       }
   }
