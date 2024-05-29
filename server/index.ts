@@ -1,6 +1,6 @@
 // Import dependencies
 import dotenv from 'dotenv';
-import { connection, syncDatabase } from './config/db';
+import dbFunctions from './config/db';
 import express from 'express'
 import routes from './routes'
 import path, { dirname } from 'path'
@@ -26,8 +26,8 @@ app.use(routes)
 
 
 //database connection
-connection();
-syncDatabase()
+dbFunctions.connection();
+dbFunctions.syncDatabase()
 
 // Start the server
 const port = process.env.port || 8080;
