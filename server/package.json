@@ -7,7 +7,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\"",
     "dev": "nodemon --exec npx tsx index.ts",
-    "start": "tsx index.ts",
+    "start": "npx tsx index.ts",
     "admin": "npx tsx createAdmin.ts"
   },
   "keywords": [],
