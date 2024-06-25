@@ -6,6 +6,8 @@ import { allQuestions } from '../Components/Form/formQuestionData';
 import { TextInput } from '../Components/Form/Text/textInput';
 import { LargeTextInput } from '../Components/Form/Text/largeTextInput';
 import axios from 'axios';
+const serverPath = process.env.REACT_APP_SERVER_PATH
+
 const reducer = (state:any, action:any) => {
     switch(action.type) {
         case 'add_text': {
@@ -43,7 +45,7 @@ const handleCheckBoxChange = (key:string) => {
 const handleSubmit = async() => {
     try{
         console.log(state, 'submitted')
-        const customer = await axios.post('/api/customer/create', { state })
+        const customer = await axios.post(`${serverPath}/api/customer/create`, { state })
         console.log('success', customer)
     }catch(error){
     
