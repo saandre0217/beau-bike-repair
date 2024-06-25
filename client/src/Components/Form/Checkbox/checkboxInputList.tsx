@@ -1,5 +1,4 @@
-import React, { useState, useReducer } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { CheckBoxInput } from './checkboxInput';
 import { checkBoxLabels as cbLabelObjArr }  from '../formQuestionData';
 
