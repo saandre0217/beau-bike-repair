@@ -6,8 +6,9 @@ import { allQuestions } from '../Components/Form/formQuestionData';
 import { TextInput } from '../Components/Form/Text/textInput';
 import { LargeTextInput } from '../Components/Form/Text/largeTextInput';
 import axios from 'axios';
+
 const serverPath = process.env.REACT_APP_SERVER_PATH
-axios.defaults.baseURL = serverPath;
+axios.defaults.baseURL = 'https://bbr-server.azurewebsites.net';
 
 const reducer = (state:any, action:any) => {
     switch(action.type) {
