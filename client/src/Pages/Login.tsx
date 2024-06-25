@@ -18,7 +18,7 @@ export const Login = () => {
     }
     const submitLogin = async () => {
         try{
-           const checkLogin = await axios.post('http://localhost:3001/auth/login', {
+           const checkLogin = await axios.post('/auth/login', {
                 username,
                 password
             })

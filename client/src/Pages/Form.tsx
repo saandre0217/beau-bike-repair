@@ -43,7 +43,7 @@ const handleCheckBoxChange = (key:string) => {
 const handleSubmit = async() => {
     try{
         console.log(state, 'submitted')
-        const customer = await axios.post('http://localhost:3001/api/customer/create', { state })
+        const customer = await axios.post('/api/customer/create', { state })
         console.log('success', customer)
     }catch(error){
     

@@ -9,7 +9,7 @@ export const Admin = () => {
 
     const getAllCustomers = async(status: string) => {
         try{
-            const customerArray = await axios.get(`http://localhost:3001/api/customer/${status}`)
+            const customerArray = await axios.get(`/api/customer/${status}`)
             console.log(customerArray.data)
             setCustomers(customerArray.data)
 
