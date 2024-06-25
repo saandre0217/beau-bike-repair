@@ -46,7 +46,7 @@ const handleSubmit = async() => {
     try{
         console.log(state, 'submitted')
         const customer = await axios.post(`${serverPath}/api/customer/create`, { state })
-        console.log('success', customer)
+        console.log('success', customer, 'path:', serverPath)
     }catch(error){
     
         console.error('could not submit form', error)
