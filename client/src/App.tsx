@@ -8,10 +8,9 @@ import PrivateRoutes from './Components/privateRoutes';
 import {BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import axios from 'axios';
 
-//axios.defaults.baseURL = 'https://bbr-server.azurewebsites.net';
-axios.defaults.baseURL = 'http://localhost:3001';
+axios.defaults.baseURL = 'https://bbr-server.azurewebsites.net';
+//axios.defaults.baseURL = 'http://localhost:3001';
 
-const baseURL = axios.defaults.baseURL 
 function App() {
   return (
     <div className="App">
