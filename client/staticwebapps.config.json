@@ -1,0 +1,9 @@
+{
+    "navigationFallback": {
+      "rewrite": "/index.html"
+    },
+    "globalHeaders": {
+      "Access-Control-Allow-Origin": "https://purple-rock-09633710f.5.azurestaticapps.net/",
+      "Access-Control-Allow-Methods": "POST, GET, OPTIONS"
+    }
+  }
