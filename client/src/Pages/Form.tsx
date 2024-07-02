@@ -7,8 +7,9 @@ import { TextInput } from '../Components/Form/Text/textInput';
 import { LargeTextInput } from '../Components/Form/Text/largeTextInput';
 import axios from 'axios';
 
-const serverPath = process.env.REACT_APP_SERVER_PATH
 axios.defaults.baseURL = 'https://bbr-server.azurewebsites.net';
+// const serverPath = process.env.REACT_APP_SERVER_PATH
+//axios.defaults.baseURL = 'http://localhost:3001';
 
 const reducer = (state:any, action:any) => {
     switch(action.type) {
@@ -46,9 +47,9 @@ const handleCheckBoxChange = (key:string) => {
 
 const handleSubmit = async() => {
     try{
-        console.log(state, 'submitted', 'server', serverPath)
+        // console.log(state, 'submitted', 'server', serverPath)
         const customer = await axios.post(`/api/customer/create`, { state })
-        console.log('success', customer, 'path:', serverPath)
+        // console.log('success', customer, 'path:', serverPath)
     }catch(error){
     
         console.error('could not submit form', error)

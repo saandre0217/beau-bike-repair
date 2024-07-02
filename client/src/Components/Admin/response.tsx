@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ResponseProps } from '../../../../server/models/workOrder';
+import { ResponseProps } from '../../../../server/server/src/db/models/workOrder';
 import { ResponseField } from './responseField';
 //import { checkBoxLabels } from '../Form/formQuestionData';
 export const Response = (responseObj:ResponseProps ) => {

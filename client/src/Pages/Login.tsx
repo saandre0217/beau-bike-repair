@@ -2,7 +2,7 @@ import React, { createContext, useContext, useEffect, useMemo, useState } from '
 import useLocalStorage  from 'use-local-storage';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { AdminAttributes } from '../../../server/models/admin'
+import { AdminAttributes } from '../../../server/server/src/db/models/admin'
 
 export const Login = () => {
     const [username, setUsername] = useState<string>('');

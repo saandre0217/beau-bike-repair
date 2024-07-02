@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { CustomerResponse } from '../../../server/models/workOrder'
+import { CustomerResponse } from '../../../server/server/src/db/models/workOrder'
 import { Response } from '../Components/Admin/response'
 const serverPath = process.env.REACT_APP_SERVER_PATH
 export const Admin = () => {
