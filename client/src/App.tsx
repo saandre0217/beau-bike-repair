@@ -17,7 +17,7 @@ function App() {
       <header className="App-header">
         
       </header>
-      <Router>
+      <Router basename='https://purple-rock-09633710f.5.azurestaticapps.net/'>
         <Routes>
           <Route path='/' element={<Intake />} />
           <Route path='/login' element={<Login />}/>
