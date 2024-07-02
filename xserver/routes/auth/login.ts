@@ -1,6 +1,4 @@
-import * as jwt from 'jsonwebtoken'
 import { Router } from "express";
-import { JWT_SECRET } from '../../config/config';
 import { Admin } from '../../models/admin'
 import { compareHash } from "../../utils/password";
 const router = Router();

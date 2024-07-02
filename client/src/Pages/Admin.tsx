@@ -16,10 +16,9 @@ export const Admin = () => {
             console.error('could not get all customers', error)
         }
     }
-    console.log(customers)
 
     useEffect(() => {
-        getAllCustomers('new')
+        //getAllCustomers('new')
     },[])
     return (
         <div style={{color:'black'}}>
@@ -28,7 +27,7 @@ export const Admin = () => {
                 response={customer}
                 />
             )) 
-            : <div></div>}
+            : <div> hey girl</div>}
         </div>
     )
 }

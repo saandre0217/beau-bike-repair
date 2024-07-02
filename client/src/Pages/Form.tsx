@@ -7,7 +7,6 @@ import { TextInput } from '../Components/Form/Text/textInput';
 import { LargeTextInput } from '../Components/Form/Text/largeTextInput';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://bbr-server.azurewebsites.net';
 // const serverPath = process.env.REACT_APP_SERVER_PATH
 //axios.defaults.baseURL = 'http://localhost:3001';
 
@@ -27,6 +26,7 @@ const reducer = (state:any, action:any) => {
         }
     }
 }
+
 export const Intake = () => {
 const [state, dispatch] = useReducer(reducer, allQuestions)
 
@@ -49,7 +49,7 @@ const handleSubmit = async() => {
     try{
         // console.log(state, 'submitted', 'server', serverPath)
         const customer = await axios.post(`/api/customer/create`, { state })
-        // console.log('success', customer, 'path:', serverPath)
+        console.log('success', customer, 'path:', axios.defaults.baseURL)
     }catch(error){
     
         console.error('could not submit form', error)

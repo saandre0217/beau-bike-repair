@@ -30,7 +30,7 @@ export const Response = (responseObj:ResponseProps ) => {
   }
 
   useEffect(()=> {
-    setStateObjects(responseObj)
+    //setStateObjects(responseObj)
   },[])
     return (
         <div >
