@@ -4,5 +4,5 @@
 # variables
 .env
 
-/server
+/xserver
 graveyard.ts
